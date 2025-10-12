@@ -513,7 +513,7 @@ border: 3px solid black;
 border-radius: 50%;
 margin: 50px auto;
 position: relative;
-left: -184px;
+left: -327px;
 top: -353px;
 z-index: -1;
  border: 3px solid rgba(0, 255, 255, 0.2);
@@ -748,7 +748,7 @@ z-index: -1;
     border-radius: 50%;
     margin: 50px auto;
     position: relative;
-    left: 183px;
+    left: 331px;
     top: -602px;
     z-index: -1;
      background: radial-gradient(circle at 50% 50%, #1A1F3B 0%, #0E1320 100%);
@@ -858,4 +858,14 @@ text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
 .arrow-wrapper-left,
 .arrow-wrapper-right {
   transition: transform 0.7s ease-in-out;
+}
+
+
+
+
+.speedometer-container,
+.speedometer-left,
+.speedometer-right {
+  transform: scale(1.8) translateY(100px);
+  transform-origin: center top;
 }

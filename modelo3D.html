@@ -6,36 +6,47 @@
     <title>Audi A8 3D</title>
 
     <!-- Importa o script do model-viewer -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
 
     <style>
       body {
         margin: 0;
-        /* background-color: #111; */
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
       }
+
       model-viewer {
         width: 90vw;
         height: 90vh;
-        /* background-color: #222; */
         border-radius: 12px;
+        --poster-color: transparent;
+      }
+
+      /* Oculta a dica de interação (arrastar para girar) */
+      model-viewer::part(default-progress-bar),
+      model-viewer::part(default-ar-button),
+      model-viewer::part(default-ar-prompt) {
+        display: none !important;
       }
     </style>
   </head>
 
   <body>
-    <!-- Exibe o modelo 3D -->
     <model-viewer
-      src="img/Audi_A8.glb"
+      src="img/AudiA8/audiA8.gltf"
       alt="Audi A8 3D"
       camera-controls
       shadow-intensity="1"
       exposure="1.2"
       camera-orbit="200deg 80deg"
-  field-of-view="35deg"
+      field-of-view="35deg"
+      disable-zoom
+      interaction-prompt="none"
       ar
     ></model-viewer>
   </body>

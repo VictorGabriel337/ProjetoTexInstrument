@@ -1,0 +1,424 @@
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
+}
+
+#videoBG {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: -1; 
+    opacity: 0.2;
+    border-radius: 14px; 
+}
+
+
+
+
+
+body {
+  margin: 0;
+  overflow: hidden; 
+  transform: scale(0.5); 
+  transform-origin: top left; 
+  width: 200%; 
+  height: 200%;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(ellipse at center,#07101b 0%, #051018 40%, #041018 100%);
+  color:#cfe7ff;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  align-items:center;justify-content:center;
+  padding:30px;
+}
+
+.panel {
+  width: 100%;
+  height: 190vh;
+  border-radius: 0;
+  padding: 20px;
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 10px 40px rgba(2,6,12,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.map-label {
+  font-size: 30px;
+  opacity: 0.85;
+  position: relative;
+  left: 90px;
+  top: 70px;
+  
+}
+
+/* Bloco de informações externas */
+.outside-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: 120px;
+}
+.outside-label {
+  font-size: 30px;
+  opacity: 0.7;
+}
+.outside-value {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+/* Label lateral */
+.side-label {
+  font-size: 30px;
+  opacity: 0.8;
+}
+
+/* Grupo de indicadores circulares */
+.circle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+  bottom: 100px;
+}
+
+
+.speed-labels {
+  fill: #9de0ff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+.needle-path {
+  stroke: #ff415c;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.needle-center {
+  fill: #ff415c;
+  stroke: #ffeeee;
+  stroke-opacity: 0.06;
+  stroke-width: 1;
+}
+
+
+
+.top-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.time{
+  font-weight:700;
+  font-size:40px;
+  letter-spacing:2px;
+  position: relative;
+  right: 760px;
+  top: 50px;
+}
+.top-right{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.warning{
+  background:linear-gradient(180deg, rgba(255,0,40,0.15), rgba(255,0,40,0.08));
+  color:#ffbcbc;
+  padding:8px 12px;
+  border-radius:6px;
+  font-weight:600;
+  border:1px solid rgba(255,0,40,0.12);
+  display:flex;
+  gap:10px;
+  align-items:center;
+  box-shadow:0 4px 18px rgba(255,0,40,0.04) inset;
+}
+.warning .dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#ff3b3b;
+  box-shadow:0 0 6px rgba(255,59,59,0.8)
+}
+
+/* Main gauges row */
+.main{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:20px;
+  height:100%;
+  gap:10px;
+}
+
+/* Circular gauge (left/right) */
+.gauge{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  background:radial-gradient(closest-side, rgba(255,255,255,0.02), rgba(0,0,0,0.35));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 6px 20px rgba(2,6,12,0.6) inset;
+}
+.gauge .inner{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.6));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.gauge .label{
+  font-size:45px;
+  color:#bfe8ff;
+  opacity:0.9
+}
+.gauge .value{
+  font-weight:700;
+  font-size:50px;
+  margin-top:6px;
+}
+
+
+.speedometer{
+  width:420px;
+  height:240px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.speedometer svg{
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+/* Needle */
+.needle{
+  transform-origin:210px 170px;
+  transition:transform 0.8s cubic-bezier(.2,.9,.3,1);
+}
+
+/* Digital readouts */
+.readouts{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);text-align:center;color:#9de0ff
+}
+.readouts .big{
+  font-size:18px;
+  font-weight:800;
+}
+.readouts .small{
+  font-size:12px;
+  opacity:0.8;
+  margin-top:4px;
+}
+
+
+/* Right stacked indicators */
+.side-right{
+  width:86px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:center;
+}
+.circle-ind{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:3px solid rgba(255,255,255,0.03);
+  position:relative;
+  right: 20px;
+}
+.circle-ind .num{
+
+  font-weight:800;
+  font-size: 24px;
+}
+.circle-ind.tint{
+  box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.6));
+}
+.side-right .small-label{
+  font-size:30px;
+  opacity:0.8;
+  margin-top:6px;
+  position: relative;
+  right: 20px;
+  bottom: 70px;
+}
+
+/* Left vertical bars */
+.side-left{
+  width:86px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:center;
+}
+.bars{
+  width:76px;
+  height:240px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.45));
+  border-radius:8px;
+  padding:6px;
+  border:1px solid rgba(255,255,255,0.02);
+
+}
+.bar{
+  width:100%;
+  height:20%;
+  background:linear-gradient(180deg,#00d0ff22,transparent);
+  margin-bottom:6px;
+  border-radius:4px;
+  display:block;
+}
+
+
+.mini-map {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  top: 100px;
+}
+
+.mini-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; 
+  display: block;
+  border-radius: 50%;
+}
+
+.mini-map .car{
+  position:absolute;
+  right:14px;
+  top:10px;
+  width:36px;
+  height:20px;
+  border-radius:6px;
+  background:#042b3a;border:1px solid rgba(255,255,255,0.03);
+  box-shadow:0 6px 18px rgba(2,6,12,0.6);
+}
+
+.icon-car{
+  width:40px;
+  height:40px;
+  /* border:2px solid #00d0ff; */
+  border-radius:2px;
+  position:relative;
+}
+
+
+.hexes{
+  position:absolute;
+  right:26px;
+  bottom:20px;
+  display:flex;
+  gap:60px;
+  align-items:center;
+}
+.hex{
+  width:100px;
+  height:100px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.35));
+  clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+
+.meta{
+  position:absolute;
+  left:26px;
+  bottom:18px;
+  font-size:12px;
+  opacity:0.6;
+}
+
+.iframe-speedometer{
+  width:1100px;
+  height:525px;
+  border:none;
+  border-radius:12px;
+  position: absolute;
+  bottom: 639px;
+  left: 437px;
+  overflow:hidden;
+  scrollbar-width: none;
+}
+
+.iframe-speedometer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+.iframe-model{
+  width:800px;
+  height:800px;
+  border:none;
+  border-radius:12px;
+  position: absolute;
+  top: 300px;
+  right: 600px;
+  overflow:hidden;
+  scrollbar-width: none;
+}
+
+
+.speed-wrap iframe{
+  overflow: hidden;
+}
+
+
+
+
+/* responsive tweaks */
+@media (max-width:900px){
+  .panel{
+    padding:18px;
+  }
+  .speedometer{
+    width:340px;
+    height:180px;
+  }
+  .holo{
+    width:460px;
+  }
+}
+
