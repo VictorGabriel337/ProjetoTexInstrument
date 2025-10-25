@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function() {
       const response = await fetch(`http://${espIP}/data`);
       const data = await response.json();
 
-      // Atualiza a div de pressão
+     
       const pressureDiv = document.getElementById("pressureValue");
       pressureDiv.innerText = data.smpPressure.toFixed(2) + " kPa";
 
-      // Atualiza a div de temperatura (id correto: Tempvalue)
+    
       const tempDiv = document.getElementById("Tempvalue");
       tempDiv.innerText = data.smpTemperature.toFixed(2) + " °C";
 
@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Atualiza a cada 1 segundo
+  
   setInterval(updateData, 1000);
-  updateData(); // chamada imediata
+  updateData(); 
 });
 
 
@@ -34,18 +34,18 @@ document.addEventListener("DOMContentLoaded", function() {
     let minutes = now.getMinutes();
     let ampm = hours >= 12 ? "PM" : "AM";
 
-    // Converte hora para formato 12h
+    
     hours = hours % 12;
-    hours = hours ? hours : 12; // Se for 0, coloca 12
+    hours = hours ? hours : 12; 
 
-    // Adiciona zero à esquerda nos minutos
+   
     minutes = minutes < 10 ? "0" + minutes : minutes;
 
     const timeString = `${hours}:${minutes} ${ampm}`;
     timeDiv.innerText = timeString;
   }
 
-  updateTime(); // chamada imediata
-  setInterval(updateTime, 1000); // atualiza a cada segundo
+  updateTime(); 
+  setInterval(updateTime, 1000); 
 });
 
