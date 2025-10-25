@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const espIP = "192.168.15.7"; // IP do ESP8266
+  const espIP = "192.168.15.5"; // IP do ESP8266
 
   async function updateData() {
     try {
