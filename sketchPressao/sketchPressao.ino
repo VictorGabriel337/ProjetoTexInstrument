@@ -13,8 +13,8 @@ const int desacelerar = D6;  // GPIO12
 int velocidade = 0;
 
 // --- Rede WiFi ---
-const char* ssid = "Aimee1306";
-const char* password = "@fernandacampos1306";
+const char* ssid = "iPhone";
+const char* password = "12345678";
 
 ESP8266WebServer server(80);
 
